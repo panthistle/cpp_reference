@@ -1,0 +1,21 @@
+C++ PROGRAM BASICS
+
+-   Lines beginning with // are comments. To comment out a block of lines, use /*.... */
+-   Pre-processor directives begin with a hash sign (#). They are interpreted before the compilation of the
+    program itself begins. Each directive occupies one full line and does not end with a semi-column (;)
+-   Include directives copy/paste the contents of the library/header to the current file (eg. #include <iostream>)
+-   The "using namespace std;" declaration enables visibility of the standard c++ library allowing all elements in
+    the std namespace to be accessed in an unqualified manner (without the std:: prefix)
+-   c++ does not have strict rules on indentation or on how to split instructions in different lines. This is just
+    a matter of programming style of the author to improve readability of the code.
+-   In c++, the separation between statements is specified with an ending semicolon (;)
+-   The cout (output stream object), the << (stream insertion operator), the cin (input stream object) and the >>
+    (stream extraction operator) are all members of the std library. Operators are actually functions.
+-   int main() is the entry function of a c++ program.
+-   to keep the terminal window open use: std::cin.get() before the closing bracket
+-   Two main build configurations exist: debug and release. The build output could be executable, static/dynamic
+    library, etc.
+-   The project/solution platform is the target system for the application
+-   The compiler compiles all source files (.cpp , .c) separately, including all #include directives, and it creates
+    intermediate translation units (binary object files). Then, the linker links those files, based on declarations
+    of functions, etc., and it generates the final executable.
