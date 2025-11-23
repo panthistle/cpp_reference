@@ -1,0 +1,158 @@
+CONSTANTS
+
+Constants are expressions with a fixed value.
+
+
+Literal constants
+
+They are used to express particular values within the source code of a program. They have a type, just like variables.
+Literal constants can be classified into:
+integer, floating-point, characters, strings, Boolean, pointers, and user-defined.
+
+
+Integer Numerals
+
+75         // decimal
+0113       // octal
+0x4b       // hexadecimal
+
+By default, integer literals are of type int. However, certain suffixes may be appended to an integer literal to
+specify a different integer type:
+
+Suffix	    Type modifier
+u or U	    unsigned
+l or L	    long
+ll or LL    long long
+
+Unsigned may be combined with any of the other two in any order to form unsigned long or unsigned long long.
+For example:
+
+75         // int
+75u        // unsigned int
+75l        // long
+75ul       // unsigned long
+75lu       // unsigned long
+
+The suffix can be specified using either upper or lower case letters.
+
+
+Floating Point Numerals
+
+3.14159    // 3.14159
+6.02e23    // 6.02 x 10^23
+1.6e-19    // 1.6 x 10^-19
+3.0        // 3.0
+
+The default type for floating-point literals is double. Floating-point literals of type float or long double can be
+specified by adding one of the following suffixes:
+
+Suffix	Type
+f or F	float
+l or L	long double
+
+For example:
+
+3.14159L   // long double
+6.02e23f   // float
+
+Any of the letters that can be part of a floating-point numerical constant (e, f, l) can be written using either
+lower or upper case letters with no difference in meaning.
+
+
+Character and string literals
+
+'z'
+'p'
+"Hello world"
+"How do you do?"
+
+To represent a single character, enclose it between single quotes (''), and to express a string (which generally
+consists of more than one character), enclose the characters between double quotes ("").
+Character and string literals can also represent special characters.
+
+List of the single character escape codes:
+
+Escape code	    Description
+\n	            newline
+\r	            carriage return
+\t	            tab
+\v	            vertical tab
+\b	            backspace
+\f	            form feed (page feed)
+\a	            alert (beep)
+\'	            single quote (')
+\"	            double quote (")
+\?	            question mark (?)
+\\	            backslash (\)
+
+Several string literals can be concatenated to form a single string literal simply by separating them by one or more
+blank spaces, including tabs, newlines, and other valid blank characters. For example:
+
+"this forms" "a single"     " string "
+"of characters"
+
+The above is a string literal equivalent to:
+
+"this formsa single string of characters"
+
+All the character literals and string literals described above are made of characters of type char. A different
+character type can be specified by using one of the following prefixes which are case sensitive:
+
+Prefix	Character type
+u	    char16_t
+U	    char32_t
+L	    wchar_t
+
+For string literals, apart from u, U, and L, two additional prefixes exist:
+
+Prefix	Description
+u8	    The string literal is encoded in the executable using UTF-8
+R	    The string literal is a raw string
+
+In raw strings, backslashes and single and double quotes are all valid characters; the content of the literal is
+delimited by an initial R"sequence( and a final )sequence", where sequence is any sequence of characters (including
+an empty sequence). The content of the string is what lies inside the parentheses, ignoring the delimiting sequence
+itself. For example:
+
+R"(string with \backslash)"
+R"&%$(string with \backslash)&%$"
+
+Both strings above are equivalent to "string with \\backslash". The R prefix can be combined with any of the other
+prefixes, such as u, L or u8.
+
+
+Other literals
+
+Three keyword literals exist in c++: true, false and nullptr:
+
+true and false are the two possible values for variables of type bool, nullptr is the null pointer value.
+
+bool foo = true;
+bool bar = false;
+int* p = nullptr;
+
+
+Typed constant expressions (User-defined literals)
+
+Sometimes, it is just convenient to give a name to a constant value:
+
+const double pi = 3.1415926;
+const char tab = '\t';
+
+We can then use these names instead of the literals they were defined to.
+
+
+Preprocessor definitions (#define)
+
+Another mechanism to name constant values is the use of preprocessor definitions. They have the following form:
+
+#define identifier replacement
+
+After this directive, any occurrence of identifier in the code is interpreted as replacement, where replacement is
+any sequence of characters (until the end of the line). This replacement is performed by the preprocessor, and
+happens before the program is compiled, thus causing a sort of blind replacement: the validity of the types or
+syntax involved is not checked in any way.
+
+#define lines, unlike c++ statements, do not require semicolons (;) at the end. The directive extends automatically
+until the end of the line. If a semicolon is included in the line, it is part of the replacement sequence and is
+also included in all replaced occurrences.
