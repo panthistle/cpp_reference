@@ -1,2 +1,2 @@
 # cpp_reference
-cpp quick reference
+various basic c++ projects for quick reference
