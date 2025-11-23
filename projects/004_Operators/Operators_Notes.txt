@@ -38,8 +38,8 @@ Relational and comparison operators
 operator	description
 ==	        Equal to
 !=	        Not equal to
-<	        Less than
->	        Greater than
+<	          Less than
+>	          Greater than
 <=	        Less than or equal to
 >=	        Greater than or equal to
 
@@ -56,14 +56,14 @@ inverts it, producing false if its operand is true, and true if its operand is f
 !false      // evaluates to true
 
 && OPERATOR (and)
-a	b	    a && b
+a	    b	        a && b
 true	true	    true
 true	false	    false
 false	true	    false
 false	false	    false
 
 || OPERATOR (or)
-a	b	    a || b
+a	    b	        a || b
 true	true	    true
 true	false	    true
 false	true	    true
@@ -104,8 +104,8 @@ operator	asm equivalent      description
 |	        OR	            Bitwise inclusive OR
 ^	        XOR	            Bitwise exclusive OR
 ~	        NOT	            Unary complement (bit inversion)
-<<	        SHL	            Shift bits left
->>	        SHR	            Shift bits right
+<<	      SHL	            Shift bits left
+>>	      SHR	            Shift bits right
 
 
 Explicit type casting operator
@@ -137,4 +137,5 @@ size_t x = sizeof (char);
 In the example above, x = 1, because char is a type with a size of one byte.
 
 The value returned by sizeof is a compile-time constant, so it is always determined before program execution.
+
 
