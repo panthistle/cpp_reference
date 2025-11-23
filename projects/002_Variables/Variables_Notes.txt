@@ -1,0 +1,75 @@
+VARIABLES AND DATA TYPES
+
+We define a variable as a portion of memory to store a value. 
+Each variable has a name (identifier) which makes it unique.
+
+Identifiers
+
+A valid identifier is a sequence of one or more letters, digits, or underscore characters (_). Spaces, punctuation
+marks, and symbols cannot be part of an identifier. In addition, identifiers shall always begin with a letter. They
+can also begin with an underline character (_), but such identifiers are -in most cases- considered reserved for
+compiler-specific keywords or external identifiers, as well as identifiers containing two successive underscore
+characters anywhere. In no case can they begin with a digit.
+
+c++ uses a number of keywords to identify operations and data descriptions; therefore, identifiers created by a
+programmer cannot match these keywords. The standard reserved keywords are:
+
+alignas, alignof, and, and_eq, asm, auto, bitand, bitor, bool, break, case, catch, char, char16_t, char32_t, class,
+compl, const, constexpr, const_cast, continue, decltype, default, delete, do, double, dynamic_cast, else, enum,
+explicit, export, extern, false, float, for, friend, goto, if, inline, int, long, mutable, namespace, new, noexcept,
+not, not_eq, nullptr, operator, or, or_eq, private, protected, public, register, reinterpret_cast, return, short,
+signed, sizeof, static, static_assert, static_cast, struct, switch, template, this, thread_local, throw, true, try,
+typedef, typeid, typename, union, unsigned, using, virtual, void, volatile, wchar_t, while, xor, xor_eq
+
+Specific compilers may also have additional specific reserved keywords.
+
+The c++ language is a "case sensitive" language. That means that an identifier written in capital letters is not
+equivalent to another one with the same name but written in small letters.
+
+
+Fundamental types
+
+Fundamental data types are basic types implemented directly by the language that represent the basic storage units
+supported natively by most systems. They can mainly be classified into:
+
+Group	                    Type names*	                   Notes on size / precision
+
+Character types	            char	                   Exactly one byte in size. At least 8 bits.
+                            char16_t	                   Not smaller than char. At least 16 bits.
+                            char32_t	                   Not smaller than char16_t. At least 32 bits.
+                            wchar_t	                   Can represent the largest supported character set.
+Integer types (signed)	    signed char	                   Same size as char. At least 8 bits.
+                            "signed" short "int"	   Not smaller than char. At least 16 bits.
+                            "signed" int	           Not smaller than short. At least 16 bits.
+                            "signed" long "int"	           Not smaller than int. At least 32 bits.
+                            "signed" long long "int"	   Not smaller than long. At least 64 bits.
+Integer types (unsigned)    unsigned char	           (same size as their signed counterparts)
+                            unsigned short "int"
+                            unsigned "int"
+                            unsigned long "int"
+                            unsigned long long "int"
+Floating-point types	    float
+                            double	                    Precision not less than float
+                            long double	                    Precision not less than double
+Boolean type	            bool
+Void type	            void	                    no storage
+Null pointer	            decltype(nullptr)
+
+* The names of certain integer types can be abbreviated without their signed and int components - the part in double
+  quotes is not required to identify the type. For example, signed short int can be abbreviated as signed short,
+  short int, or simply short; they all identify the same fundamental type.
+
+c++ is a strongly-typed language, and requires every variable to be declared with its type before first use.
+
+
+Compound types
+
+The c++ language has a rich set of compound types, of which the fundamental types are mere building blocks. An
+example of compound type is the string class. Variables of this type are able to store sequences of characters, such
+as words or sentences.
+
+A first difference with fundamental data types is that in order to declare and use objects (variables) of this type,
+the program needs to include the header where the type is defined within the standard library (for example,
+#include <string>). Strings can be initialized with any valid string literal and, just like fundamental types, all
+initialization formats are valid with strings.
+
