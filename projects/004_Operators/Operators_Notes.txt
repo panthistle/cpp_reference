@@ -1,0 +1,140 @@
+OPERATORS
+
+Assignment operator (=)
+
+
+Arithmetic operators
+
+Operator	description
++	        addition
+-	        subtraction
+*	        multiplication
+/	        division
+%	        modulo
+
+
+Compound assignment
+
+expression	    equivalent to...
+y += x;             y = y + x;
+x -= 5;             x = x - 5;
+x /= y;             x = x / y;
+a *= b + 1;	    a = a * (b+1);
+
+
+Increment/decrement
+
+expression      equivalent to       equivalent to
+++x;            x+=1;               x=x+1;
+
+Example prefix	                    Example suffix
+x = 3;                              x = 3;
+y = ++x;                            y = x++;
+// x contains 4, y contains 4       // x contains 4, y contains 3
+
+
+Relational and comparison operators
+
+operator	description
+==	        Equal to
+!=	        Not equal to
+<	        Less than
+>	        Greater than
+<=	        Less than or equal to
+>=	        Greater than or equal to
+
+
+Logical operators
+
+! OPERATOR (not)
+The operator ! is the c++ operator for the Boolean operation NOT. It has only one operand, to its right, and
+inverts it, producing false if its operand is true, and true if its operand is false.
+
+!(5 == 5)   // evaluates to false 
+!(6 <= 4)   // evaluates to true 
+!true       // evaluates to false
+!false      // evaluates to true
+
+&& OPERATOR (and)
+a	b	    a && b
+true	true	    true
+true	false	    false
+false	true	    false
+false	false	    false
+
+|| OPERATOR (or)
+a	b	    a || b
+true	true	    true
+true	false	    true
+false	true	    true
+false	false	    false
+
+
+Conditional ternary operator ( ? )
+
+The conditional operator evaluates an expression, returning one value if that expression evaluates to true, and
+another value if the expression evaluates as false. Its syntax is:
+
+condition ? result1 : result2
+
+7==5 ? 4 : 3     // evaluates to 3, since 7 is not equal to 5.
+7==5+2 ? 4 : 3   // evaluates to 4
+5>3 ? a : b      // evaluates to the value of a
+a>b ? a : b      // evaluates to whichever is greater, a or b.
+
+
+Comma operator ( , )
+
+The comma operator (,) is used to separate two or more expressions that are included where only one expression is
+expected. When the set of expressions has to be evaluated for a value, only the right-most expression is considered.
+
+For example, the following code:
+
+A = (B=3, B+2);
+
+first assigns the value 3 to B, and then it assigns B+2 to A. So, A=5 and B=3.
+
+
+Bitwise operators ( &, |, ^, ~, <<, >> )
+
+Bitwise operators modify variables based on the bit patterns of their values.
+
+operator	asm equivalent      description
+&	        AND	            Bitwise AND
+|	        OR	            Bitwise inclusive OR
+^	        XOR	            Bitwise exclusive OR
+~	        NOT	            Unary complement (bit inversion)
+<<	        SHL	            Shift bits left
+>>	        SHR	            Shift bits right
+
+
+Explicit type casting operator
+
+Type casting operators allow to convert a value of a given type to another type. There are several ways to do this
+in c++. The simplest one, which is inherited from the c language, is to precede the expression to be converted by the
+new type enclosed in parentheses:
+
+int i;
+float f = 3.14;
+i = (int) f;
+
+The previous code converts the floating-point number 3.14 to an integer value 3. The remainder is lost. Another way
+to do the same thing in c++ is to use the functional notation preceding the expression to be converted by the type
+and enclosing the expression in parentheses:
+
+i = int (f);
+
+Both ways of casting types are valid in c++.
+
+
+sizeof
+
+This operator accepts one parameter, which can be either a type or a variable, and returns the size in bytes of
+that type or object:
+
+size_t x = sizeof (char);
+
+In the example above, x = 1, because char is a type with a size of one byte.
+
+The value returned by sizeof is a compile-time constant, so it is always determined before program execution.
+
