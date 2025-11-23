@@ -35,8 +35,8 @@ y = ++x;                            y = x++;
 
 Relational and comparison operators
 
-operator	description
-==	        Equal to
+operator	  description
+==          Equal to
 !=	        Not equal to
 <	          Less than
 >	          Greater than
@@ -137,5 +137,6 @@ size_t x = sizeof (char);
 In the example above, x = 1, because char is a type with a size of one byte.
 
 The value returned by sizeof is a compile-time constant, so it is always determined before program execution.
+
 
 
