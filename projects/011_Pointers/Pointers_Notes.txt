@@ -99,7 +99,7 @@ Those two expressions are equivalent and valid, if a is a pointer or an array. T
 can be used just like a pointer to its first element.
 
 
-Pointer arithmetics
+Pointer arithmetic
 
 Addition and subtraction operations are allowed for pointers. Both depend on the size of the data type they point to.
 
@@ -255,3 +255,4 @@ except that the name of the function is enclosed between parentheses () and an a
 the name:
 
 int (*pName)(int,int) = FuncName;
+
