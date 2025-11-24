@@ -1,0 +1,161 @@
+FUNCTIONS
+
+In c++, a function is a group of statements that is given a name, and which can be called from some point in the
+program. The syntax to define a function is:
+
+type name ( parameter1, parameter2, ...) { statements }
+
+Where:
+- type is the type of the value returned by the function.
+- name is the identifier by which the function can be called.
+- parameters (as many as needed): Each parameter consists of a type followed by an identifier, with each parameter
+  being separated from the next by a comma. Each parameter looks very much like a regular variable declaration
+  (for example: int x), and in fact acts within the function as a regular variable which is local to the function.
+  The purpose of parameters is to allow passing arguments to the function from the location where it is called.
+- statements are the function's body, they are surrounded by braces {} and specify what the function does.
+
+if the function does not need to return a value, the type to be used is void, which is a special type to represent
+the absence of value; optionally, void can also be used in the function's parameter list to explicitly specify that
+the function takes no actual parameters when called. Even when the function takes no parameters, the empty pair of
+parentheses shall always be appended to the function name. The parentheses are what differentiate functions from other
+kinds of declarations or statements.
+
+Specifically in the case of main(), if execution ends normally without encountering a return statement the compiler
+assumes the function ends with an implicit return statement: return 0; When main returns zero (either implicitly or
+explicitly), it is interpreted by the environment as that the program ended successfully. Other values may be returned
+by main, and some environments give access to that value to the caller in some way, although this behaviour is not
+required nor is it necessarily portable between platforms. The values for main that are guaranteed to be interpreted
+in the same way on all platforms are:
+
+value	        description
+0	        The program was successful
+EXIT_SUCCESS	(same as above). This value is defined in header <cstdlib>.
+EXIT_FAILURE	The program failed. This value is defined in header <cstdlib>.
+
+Because the implicit return 0; statement for main() is a tricky exception, many authors consider it good practice to
+explicitly write the statement.
+
+
+Arguments passed by value and by reference
+
+Calling a function whose arguments are passed by value means that what is passed to the function are the values of
+these arguments on the moment of the call, which are copied into the variables represented by the function parameters.
+These values are used to initialize the variables in the function's definition, but any modifications within the
+function has no effect on the values of the variables outside it, because they were themselves not passed to the
+function on the call, but only copies of their values at that moment.
+
+To access the actual parameter variables, not copies, the function declares its parameters as references. In c++,
+references are indicated with an ampersand (&) following the parameter type. When a variable is passed by reference,
+what is passed is no longer a copy, but the variable itself, the variable identified by the function parameter,
+becomes somehow associated with the argument passed to the function, and any modification on the corresponding local
+variables within the function are reflected in the variables passed as arguments in the call.
+
+
+Efficiency considerations and const references
+
+Calling a function with parameters taken by value causes copies of the values to be made. This is a relatively
+inexpensive operation for fundamental types such as int, but if the parameter is of a large compound type, it may
+result in certain overhead. Arguments by reference do not require a copy. The function operates directly on (aliases
+of) the variables passed as arguments, and, at most, this might mean the transfer of certain pointers to the function.
+In this regard, they are more efficient than taking values, since they do not need to copy expensive-to-copy types.
+On the flip side, functions with reference parameters are generally perceived as functions that modify the arguments
+passed, because that is what reference parameters are actually for. To guarantee that 'by reference' parameters are
+not going to be modified by the function, we qualify the parameters as constant. By qualifying them as const, the
+function is forbidden to modify their values, but can actually access their values as references (aliases of the
+arguments), without having to make actual copies. Therefore, const references provide functionality similar to
+passing arguments by value, but with an increased efficiency for parameters of large types. That is why they are
+popular in c++ for arguments of compound types.
+
+Note that for most fundamental types, there is no noticeable difference in efficiency, and in some cases,
+const references may even be less efficient!
+
+
+Default values in parameters
+
+C++ functions can also have optional parameters for which no arguments are required in the call, for example, a
+function with three parameters may be called with only two. In this case, the function shall include a default value
+for its last parameter, which is used when called with two arguments.
+
+
+Declaring functions
+
+In c++ identifiers may be used in expressions only after they have been declared. For example, some variable x cannot
+be used before being declared with a statement such as: int x; The same applies to functions. Functions cannot be
+called before they are declared. The prototype of a function can be declared without actually defining the function
+completely, giving just enough details to allow the types involved in a function call to be known. Naturally, the
+function shall be defined somewhere else, later in the code. But at least, once declared like this, it can already be
+called. The declaration shall include all types involved (the return type and the type of its arguments), using the
+same syntax as used in the definition of the function, but replacing the body of the function (block of statements)
+with an ending semicolon. The parameter list does not need to include the parameter names, but only their types.
+Parameter names can nevertheless be specified, but they are optional, and do not need to necessarily match those in
+the function definition. For example:
+
+int protofunction (int first, int second);
+int protofunction (int, int);
+
+However, including names improves legibility of the declaration.
+
+
+Recursivity
+
+Recursivity is the property that functions have to be called by themselves. It is useful for some tasks, such as
+sorting elements, or calculating the factorial of numbers. For example, in order to obtain the factorial of a number
+(n!) the mathematical formula would be:
+
+n! = n * (n-1) * (n-2) * (n-3) ... * 1
+
+(factorial of 5) would be:
+5! = 5 * 4 * 3 * 2 * 1 = 120
+
+
+Overloaded functions
+
+In c++ two different functions can have the same name if their parameters are different; either because they have a
+different number of parameters, or because any of their parameters are of a different type. Two overloaded functions
+(i.e., two functions with the same name) have entirely different definitions; they are, for all purposes, different
+functions, that only happen to have the same name, however the compiler knows which one to call by examining the
+types passed as arguments when the function is called.
+
+Note that a function cannot be overloaded only by its return type. At least one of its parameters must have a
+different type.
+
+
+Function templates
+
+For overloaded functions with the same definition (the exact same body), c++ has the ability to define functions with
+generic types, known as function templates. Defining a function template follows the same syntax as a regular
+function, except that it is preceded by the template keyword and a series of template parameters enclosed in
+angle-brackets <>:
+
+template <template-parameters> function-declaration
+
+The template parameters are a series of parameters separated by commas. These parameters can be generic template
+types by specifying either the class or typename keyword followed by an identifier. The identifier can then be used
+in the function declaration as if it was a regular type.
+
+template <class T> T sum (T a, T b)
+{
+  return a+b;
+}
+
+It makes no difference whether the generic type is specified with keyword class or keyword typename in the template
+argument list (they are 100% synonyms in template declarations).
+
+Declaring T (a generic type within the template parameters enclosed in angle-brackets) allows T to be used anywhere
+in the function definition, just as any other type; it can be used as the type for parameters, as return type, or to
+declare new variables of this type. In all cases, it represents a generic type that will be determined on the moment
+the template is instantiated.
+
+Instantiating a template is applying the template to create a function using particular types or values for its
+template parameters. This is done by calling the function template, with the same syntax as calling a regular
+function, but specifying the template arguments enclosed in angle brackets:
+
+name <template-arguments> (function-arguments)
+
+x = sum<int>(10,20);
+
+Templates can have multiple template parameters, and the function can still use regular non-templated types. The
+template parameters can include types introduced by class or typename, but also expressions of a particular type
+(int for example). These can be used like regular function parameters but their value is determined at compile time
+to generate a different instantiation of the template, and therefore the value of that argument is never passed
+during runtime.
