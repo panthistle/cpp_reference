@@ -1,0 +1,87 @@
+NAME VISIBILITY
+
+
+Scopes
+
+Named entities, such as variables, functions, and compound types need to be declared before being used in c++. The
+point in the program where declaration happens influences its visibility:
+
+- An entity declared outside any block has global scope, meaning that its name is valid anywhere in the code. 
+- An entity declared within a block, such as a function or a statement, has block scope, and is only visible within
+  the specific block in which it is declared. Variables with block scope are known as local variables.
+
+In each scope, a name can only represent one entity. The visibility of an entity with block scope extends until the
+end of the block, including inner blocks. Nevertheless, an inner block, because it is a different block, can
+re-utilize a name existing in an outer scope to refer to a different entity; in this case, the name will refer to a
+different entity only within the inner block, hiding the entity it names outside.
+
+Variables declared in declarations that introduce a block, such as function parameters and variables declared in loops
+and conditions (such as those declared in a for or an if) are local to the block they introduce.
+
+
+Namespaces
+
+Namespaces allow the grouping of named entities that otherwise would have global scope into narrower scopes, giving
+them namespace scope. This allows organizing the elements of programs into different logical scopes referred to by
+names. The syntax to declare a namespaces is:
+
+namespace identifier
+{
+  named_entities
+}
+
+Where identifier is any valid identifier and named_entities is the set of variables, types and functions that are
+included within the namespace. The variables declared within a namespace can be accessed from within their namespace
+normally, but if accessed from outside the namespace they have to be properly qualified with the scope operator ::.
+For example:
+
+myNamespace::a
+myNamespace::b
+
+Variables and functions used in a specific namespace can access properly qualified functions and variables from other
+namespaces or global scope.
+
+
+using, using namespace
+
+The keyword 'using' introduces a name into the current declarative region (such as a block), thus avoiding the need to
+qualify the name. The keyword 'using namespace' introduces an entire namespace: 'using' and 'using namespace' have
+validity only in the same block in which they are stated or in the entire source code file if they are used directly
+in the global scope. For example, it would be possible to first use the objects of one namespace and then those of
+another one by splitting the code in different blocks.
+
+
+Namespace aliasing
+
+Existing namespaces can be aliased with new names, with the following syntax:
+
+namespace new_name = current_name;
+
+
+The std namespace
+
+All the entities (variables, types, constants, and functions) of the standard c++ library are declared within the
+'std namespace'. Many code examples include the line: using namespace std;
+
+This introduces direct visibility of all the names of the 'std namespace' into the code. This is generally done to
+facilitate comprehension and shorten the length of the examples, but many programmers prefer to qualify each of the
+elements of the standard library used in their programs. For example:
+
+std::cout << "Hello world!";
+
+Whether the elements in the 'std namespace' are introduced with using declarations or are fully qualified on every
+use does not change the behavior or efficiency of the resulting program in any way. It is mostly a matter of style
+preference, although for projects mixing libraries, explicit qualification tends to be preferred.
+
+
+Storage of variables
+
+The storage for variables with global or namespace scope is allocated for the entire duration of the program. This is
+known as 'static storage', and it contrasts with the storage for local variables (those declared within a block).
+These use what is known as 'automatic storage'. The storage for local variables is only available during the block in
+which they are declared; after that, that same storage may be used otherwise.
+
+- Variables with static storage (global variables) that are not explicitly initialized are automatically initialized
+  to zeroes.
+- Variables with automatic storage (local variables) that are not explicitly initialized are left uninitialized, and
+  thus have an undetermined value.
